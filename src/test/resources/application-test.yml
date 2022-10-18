@@ -1,0 +1,26 @@
+data:
+  name: keyvaluestore
+  username: hahshh
+  password: hshshs
+
+spring:
+#  profiles:
+#    active: test
+  application:
+    name: keyvaluestore
+  data:
+    mongodb:
+      uri: mongodb+srv://sdfdsf:${data.password}@cluster0.aiozn.mongodb.net/keyvaluestore
+#      uri: mongodb+srv://cluster0.aiozn.mongodb.net/keyvaluestore
+
+
+
+server:
+  port: 9000
+
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+
+#jasypt.encryptor.iv-generator-classname=org.jasypt.iv.NoIvGenerator

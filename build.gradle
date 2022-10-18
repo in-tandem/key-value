@@ -1,0 +1,62 @@
+plugins {
+	id 'application'
+	id 'org.springframework.boot' version '2.6.12'
+	id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+	id "org.springdoc.openapi-gradle-plugin" version "1.4.0"
+	id 'java'
+	id 'jacoco'
+
+}
+apply plugin : "java"
+
+application {
+	// URI of your main class/application's entry point (required)
+	mainClassName = "com.org.somak.store.keyvalue.tool.SourceCodeGenerator"
+}
+bootRun {
+	main  = 'com.org.somak.store.keyvalue.KeyvalueApplication'
+}
+group = 'com.org.somak.store'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.11'
+
+	// https://mvnrepository.com/artifact/org.freemarker/freemarker
+	implementation group: 'org.freemarker', name: 'freemarker', version: '2.3.14'
+
+	// https://mvnrepository.com/artifact/org.jasypt/jasypt
+//	implementation group: 'org.jasypt', name: 'jasypt', version: '1.9.2'
+//// https://mvnrepository.com/artifact/com.github.ulisesbocchio/jasypt-spring-boot-starter
+//	implementation group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot', version: '2.0.0'
+
+	// https://mavenlibs.com/maven/dependency/com.github.ulisesbocchio/jasypt-spring-boot
+	implementation('com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.3')
+
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

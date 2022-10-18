@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "61acc6a4-74d4-49bc-9e12-3bc8f3ceb60b",
+		"name": "KeyValueStore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SaveObject",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"charger\",\r\n    \"kind\": \"1product\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/rest/store/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"rest",
+						"store",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/rest/store/?id=d3ebcca6-d150-423a-88cd-6faa21ad51d2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"rest",
+						"store",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "d3ebcca6-d150-423a-88cd-6faa21ad51d2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/rest/store/name?name=charger",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"rest",
+						"store",
+						"name"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "charger"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByKind",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/rest/store/findAll?kind=Product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"rest",
+						"store",
+						"findAll"
+					],
+					"query": [
+						{
+							"key": "kind",
+							"value": "Product"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/rest/store/findAll?kind=Product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"rest",
+						"store",
+						"findAll"
+					],
+					"query": [
+						{
+							"key": "kind",
+							"value": "Product"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

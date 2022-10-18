@@ -1,0 +1,122 @@
+openapi: 3.0.1
+info:
+  title: Key Value Store
+  description: Project can be used to add/get/delete key value objects of type Item
+  contact:
+    email: dutta.somak@outlook.com
+  version: "1.0"
+servers:
+- url: http://localhost:9000
+  description: Generated server url
+paths:
+  /rest/store/:
+    get:
+      tags:
+      - item-db-controller
+      operationId: getObjectByID
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Item'
+    post:
+      tags:
+      - item-db-controller
+      operationId: storeObject
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Item'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                type: string
+    delete:
+      tags:
+      - item-db-controller
+      operationId: deleteObject
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+  /rest/store/name:
+    get:
+      tags:
+      - item-db-controller
+      operationId: getObjectByName
+      parameters:
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Item'
+  /rest/store/findAll:
+    get:
+      tags:
+      - item-db-controller
+      operationId: listObjects
+      parameters:
+      - name: kind
+        in: query
+        required: true
+        schema:
+          pattern: "^[A-Za-z]+$"
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Item'
+components:
+  schemas:
+    Item:
+      title: Item
+      required:
+      - kind
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          description: "Unique Identifier for the type, not required for save operation"
+        kind:
+          pattern: "^[A-Za-z]+$"
+          type: string
+          description: kind of key value pair
+        name:
+          type: string
+          description: Name of Object you would like to persist
+      description: Type object for persisting in key value store
